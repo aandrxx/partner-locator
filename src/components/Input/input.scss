@@ -1,0 +1,38 @@
+@import 'scss/mixins';
+@import 'scss/variables';
+
+.form__input {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 36px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    display: inline-flex;
+    align-items: center;
+    padding: $spacer/2 $spacer;
+}
+
+.form__input input {
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentcolor;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    background: none;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    min-width: 0px;
+    width: 100%;
+}
+
+.form__input.--outlined {
+    border-radius: $spacer*0.5;
+    border: 1px solid #B7BCC1;
+}
+
+.form__input input:focus {
+    outline: 0px;
+}

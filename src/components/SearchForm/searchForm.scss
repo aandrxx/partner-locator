@@ -1,0 +1,43 @@
+@import 'scss/mixins';
+@import 'scss/variables';
+
+.main__hero__search_form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: $spacer*2;
+}
+
+.main__hero__search_form > * {
+    margin-bottom: $spacer*2;
+}
+
+.main__hero__search_form__input {
+    margin-top: $spacer*2;
+}
+
+.main__hero__search_form__filter {
+    display: flex;
+    gap: $spacer*2;
+    
+    .main__hero__search_form__filter__type { 
+        width: calc(100%/3);
+    }
+
+    .main__hero__search_form__filter__location { 
+        width: calc(100%/3*2);
+    }
+
+    @include mobileBreakPoint {
+        flex-direction: column;
+        gap: $spacer;
+
+        .main__hero__search_form__filter__type, .main__hero__search_form__filter__location { 
+            width: 100%;
+        }
+
+        .main__hero__search_form__filter__location > .form__input_group {
+            flex-direction: column;
+        }
+    }
+}

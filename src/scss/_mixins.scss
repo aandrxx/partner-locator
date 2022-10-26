@@ -1,0 +1,14 @@
+@import './variables';
+
+// Breakpoints
+@mixin mobileBreakPoint {
+    @media (max-width: #{$screen-mobile}) {
+        @content;
+    }
+}
+
+@mixin desktopBreakPoint {
+    @media (min-width: #{$screen-desktop}) {
+        @content;
+    }
+}

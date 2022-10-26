@@ -1,0 +1,17 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+
+.main__header {
+    display: flex;
+    margin: 0 auto;
+    padding: 32px 0;
+
+    @include mobileBreakPoint {
+        max-width: $screen-mobile;
+        justify-content: center;
+    }
+
+    @include desktopBreakPoint {
+        max-width: $screen-desktop;
+    }
+}

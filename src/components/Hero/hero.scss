@@ -1,0 +1,56 @@
+@import 'scss/mixins';
+@import 'scss/variables';
+
+.main__hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../assets/images/bg_large.png");
+    background-size: cover;
+    background-position: center;
+    color: $text-alternative;
+    min-height: 500px;
+
+    h1, p {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 46px;
+        line-height: 28px;
+        margin: 0;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 32px;
+        margin: $spacer*3 0;
+    }
+
+    & > * {
+        width: 100%;
+        max-width: 692px;
+    }
+
+    @include mobileBreakPoint {
+        min-height: 600px;
+
+        h1 {
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 40px;
+            margin: 0;
+        }
+
+        & > * {
+            max-width: 293px;
+        }
+    }
+
+    @include desktopBreakPoint {
+        & > * {
+            max-width: 692px;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+@import 'scss/mixins';
+@import 'scss/variables';
+
+.form__select {
+    position: relative;
+    cursor: pointer;
+}
+
+.form__select__value {
+    font-weight: 400;
+    box-sizing: border-box;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 0%;
+    padding: $spacer/2 $spacer;
+}
+
+.form__select__dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    display: none;
+    background: #fff;
+    color: $text-primary;
+
+    .form__select__dropdown__input {
+        padding: $spacer;
+    }
+
+    .form__select__dropdown__items {
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+
+    .form__select__dropdown__items > .form__select__dropdown__item {
+        padding: $spacer $spacer;
+    }
+
+    .form__select__dropdown__items > .form__select__dropdown__item:hover {
+        background: $link-primary;
+        color: $text-alternative;
+    }
+}
+
+
+.form__select__dropdown.--is_visible {
+    display: block;
+}

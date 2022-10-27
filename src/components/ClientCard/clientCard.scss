@@ -27,12 +27,17 @@
     width: 20%;
     padding: 0 38px;
     display: flex;
+    align-items: center;
     justify-content: center;
 
     @include mobileBreakPoint {
         width: 40%;
+        padding: 0;
     }
 
+    img {
+        width: 100%;
+    }
 }
 
 .main__cards__client__info {
@@ -56,8 +61,15 @@
     }
 }
 
-.main__cards__client__contacts {
+.main__cards__client__contacts_w {
     width: 40%;
+
+    @include mobileBreakPoint {
+        width: 100%;
+    }
+}
+
+.main__cards__client__contacts {
     display: flex;
     align-content: flex-start;
     justify-content: space-between;

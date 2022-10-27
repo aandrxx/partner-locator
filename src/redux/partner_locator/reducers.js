@@ -3,7 +3,7 @@
 const items = [
   {
     id: 1, 
-    company: 'Napole IT', 
+    company: 'Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT', 
     status: 'Preferred Partner',
     logo: 'https://img.netwrix.com/partner_logos/standard-logo-reseller-preferred.png', 
     address: '8223 Molson Way, Liverpool, New York, United States, 13090',

@@ -32,8 +32,8 @@ const SelectComponent = ({
     const _toggleDropdown = () => {
         setOpen((prev) => !prev)
     }
-    const filteredOptions = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
-    const optionsMapped = filteredOptions.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
+    const optionsFiltered = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
+    const optionsMapped = optionsFiltered.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
     
     return (
         <FormGroup 

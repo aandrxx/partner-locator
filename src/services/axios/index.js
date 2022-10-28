@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:1337/',
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://partner-locator-api.herokuapp.com',
   // timeout: 1000,
   // headers: { 'X-Custom-Header': 'foobar' }
 });

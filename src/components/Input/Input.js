@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import './input.scss'
 
-const InputComponent = ({ className="", variant="default", onChange = () => false, ...restProps }) => {
+const InputComponent = React.forwardRef(({ className="", variant="default", onChange = () => false, ...restProps }, ref) => {
 
     return (
         <div className={
@@ -18,9 +18,9 @@ const InputComponent = ({ className="", variant="default", onChange = () => fals
             }
             {...restProps}
         >
-            <input onChange={onChange} {...restProps} />
+            <input ref={ref} onChange={onChange} {...restProps} />
         </div>
     )
-}
+})
 
 export default InputComponent

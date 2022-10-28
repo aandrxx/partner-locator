@@ -27,6 +27,13 @@ export default function locatorReducer(state = initialState, action) {
           ? addItem(state.filters, action.data)
           : state.filters.filter(item => item.field !== 'state')
       }
+    case actions.SET_CURRENT_SEARCHSTRING:
+      return { 
+        ...state,
+        filters: action.data 
+          ? addItem(state.filters, action.data)
+          : state.filters.filter(item => item.field !== 'searchString')
+      }
     case actions.SET_CURRENT_STATUS:
       return { 
         ...state,

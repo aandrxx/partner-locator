@@ -48,9 +48,15 @@ const items = [
 ]
 
 const initialState = {
+  filter: {
+    searchString: '',
+    status: '',
+    country: '',
+    state: '',
+  },
   items: items,
   loading: false,
-  loaded: false,
+  loaded: true,
 }
 
 export default function locatorReducer(state = initialState, action) {

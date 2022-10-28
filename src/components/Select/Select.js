@@ -8,24 +8,26 @@ import './select.scss'
 
 const SelectComponent = ({
     className = '',
+    placeHolder = 'No chosen',
     options = [],
     loading = false,
     ...restProps
 }) => {
     const [ open, setOpen ] = useState(false)
     const [ value, setValue ] = useState({ key: '', text: '' })
-
-    const optionsMapped = options.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item }</div>)
-
-    const _toggleDropdown = () => {
-        setOpen((prev) => !prev)
-    }
-
+    console.log(options)
     const _onChange = (event) => {
         console.log(event.target);
         setValue({ key: '', text: '' });
     }
 
+    const optionsMapped = options.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
+
+    const _toggleDropdown = () => {
+        setOpen((prev) => !prev)
+    }
+
+console.log(optionsMapped)
     return (
         <FormGroup 
             fullWidth={true}
@@ -40,7 +42,7 @@ const SelectComponent = ({
             }
             {...restProps}
         >
-            <div className="form__select__value" onClick={_toggleDropdown}>{ loading ? 'Loading...' : value.text || value.key }</div>
+            <div className="form__select__value" onClick={_toggleDropdown}>{ loading ? 'Loading...' : value.text || value.key || placeHolder }</div>
             <div className={
                     classNames(
                         {

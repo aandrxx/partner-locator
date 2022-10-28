@@ -15,10 +15,10 @@ const SelectComponent = ({
 }) => {
     const [ open, setOpen ] = useState(false)
     const [ value, setValue ] = useState({ key: '', text: '' })
-    console.log(options)
+    
     const _onChange = (event) => {
-        console.log(event.target);
-        setValue({ key: '', text: '' });
+        setValue({ key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") });
+        _toggleDropdown();
     }
 
     const optionsMapped = options.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
@@ -27,7 +27,7 @@ const SelectComponent = ({
         setOpen((prev) => !prev)
     }
 
-console.log(optionsMapped)
+    
     return (
         <FormGroup 
             fullWidth={true}

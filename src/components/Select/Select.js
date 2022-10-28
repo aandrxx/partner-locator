@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import { IconButton, Input, FormGroup } from 'components'
@@ -18,8 +18,15 @@ const SelectComponent = ({
     const [ value, setValue ] = useState({ key: '', text: '' })
     const [ searchString, setSearchString ] = useState('')
 
+    useEffect(() => {
+        if(!options.find(item => item.key === value.key)) {
+            setValue({ key: '', text: '' })
+            onChange({ key: '', text: '' })
+        }
+    }, [ options, onChange, value.key ])
+
     const _onChange = useCallback((event) => {
-        const value = { key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
+        const value = { id: event.target.getAttribute("data-id"), key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
         setValue(value)
         onChange(value)
         _toggleDropdown()
@@ -33,7 +40,7 @@ const SelectComponent = ({
         setOpen((prev) => !prev)
     }
     const optionsFiltered = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
-    const optionsMapped = optionsFiltered.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
+    const optionsMapped = optionsFiltered.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-id={item.id} data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
     
     return (
         <FormGroup 

@@ -34,6 +34,13 @@ export default function locatorReducer(state = initialState, action) {
           ? addItem(state.filters, action.data)
           : state.filters.filter(item => item.field !== 'status')
       }
+    case actions.SET_CURRENT_LOCCOUNTRY:
+      return { 
+        ...state,
+        filters: action.data 
+          ? addItem(state.filters, action.data)
+          : state.filters.filter(item => item.field !== 'country')
+      }
     case actions.GET_ITEMS_LOADING:
       return { ...state, loading: true, loaded: false, items: [] }
     case actions.GET_ITEMS_SUCCESS:

@@ -1,4 +1,5 @@
 export { default as Cards } from './Cards'
+export { default as CountriesSelect } from './CountriesSelect'
 export { default as ClientCard } from './ClientCard'
 export { default as IconButton } from './IconButton'
 export { default as Input } from './Input'

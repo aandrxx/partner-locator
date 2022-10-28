@@ -21,7 +21,6 @@ const StatusSelect = () => {
     const itemsMapped = items.map(item => ({ key: '', text: item }))
 
     const _onChange = useCallback((value) => {
-        console.log(value)
         dispatch({ 
             type: actions.SET_CURRENT_STATUS, 
             data: value.key || value.text ? { field: 'status', ...value } : '' 

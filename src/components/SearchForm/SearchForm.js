@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IconButton, Input, FormGroup, Select, StatesSelect, StatusSelect } from 'components'
+import { IconButton, Input, FormGroup, CountriesSelect, StatesSelect, StatusSelect } from 'components'
 import { ReactComponent as SearchIcon } from 'assets/images/search-ico.svg'
 
 import './searchForm.scss'
@@ -25,7 +25,7 @@ const SearchForm = () => {
                         size="small"
                         endAdornment={<StatesSelect />}
                     >
-                        <Select />
+                        <CountriesSelect />
                     </FormGroup>
                 </div>
             </div>

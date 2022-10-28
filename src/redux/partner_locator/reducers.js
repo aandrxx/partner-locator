@@ -1,66 +1,25 @@
-//import actions from './actions'
-
-const items = [
-  {
-    id: 1, 
-    company: 'Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT Napole IT', 
-    status: 'Preferred Partner',
-    logo: 'https://img.netwrix.com/partner_logos/standard-logo-reseller-preferred.png', 
-    address: '8223 Molson Way, Liverpool, New York, United States, 13090',
-    website: 'https://example1.com',
-    phone: '+777(315) 727-0303',
-    countries_covered: ['US'], 
-    states_covered: ["NY"]
-  },
-  {
-    id: 2, 
-    company: '123 srl', 
-    status: 'MSP Partner',
-    logo: 'https://img.netwrix.com/partner_logos/standard-logo-managed-service-provider-new.png', 
-    address: 'Viale dell’Industria, 50,Jesi (AN), Italy, 60035',
-    website: 'https://example1.com',
-    phone: '+739 0731 288064',
-    countries_covered: ['IT'], 
-    states_covered: []
-  },
-  {
-    id: 3, 
-    company: 'Napole IT', 
-    status: 'Preferred Partner',
-    logo: 'https://img.netwrix.com/partner_logos/standard-logo-reseller-preferred.png', 
-    address: '8223 Molson Way, Liverpool, New York, United States, 13090',
-    website: 'https://example1.com',
-    phone: '+777(315) 727-0303',
-    countries_covered: ['US'], 
-    states_covered: ["NY"]
-  },
-  {
-    id: 4, 
-    company: '123 srl', 
-    status: 'MSP Partner',
-    logo: 'https://img.netwrix.com/partner_logos/standard-logo-managed-service-provider-new.png', 
-    address: 'Viale dell’Industria, 50,Jesi (AN), Italy, 60035',
-    website: 'https://example1.com',
-    phone: '+739 0731 288064',
-    countries_covered: ['IT'], 
-    states_covered: []
-  },
-]
+import actions from './actions'
 
 const initialState = {
   filter: {
     searchString: '',
-    status: '',
-    country: '',
-    state: '',
+    status: {},
+    country: {},
+    state: {},
   },
-  items: items,
+  items: [],
   loading: false,
-  loaded: true,
+  loaded: false,
 }
 
 export default function locatorReducer(state = initialState, action) {
   switch (action.type) {
+    case actions.SET_CURRENT_LOCSTATE:
+      return { ...state, filter: { ...state.filter, state: action.data } }
+    case actions.GET_ITEMS_LOADING:
+      return { ...state, loading: true, loaded: false, items: [] }
+    case actions.GET_ITEMS_SUCCESS:
+      return { ...state, loading: false, loaded: true, items: action.data }
     default:
       return state
   }

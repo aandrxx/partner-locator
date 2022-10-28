@@ -17,13 +17,13 @@ const SearchForm = () => {
             </FormGroup>
             <div className="main__hero__search_form__filter">
                 <div className="main__hero__search_form__filter__type">
-                    <StatesSelect />
+                    <Select variant="outlined" size="small" />
                 </div>
                 <div className="main__hero__search_form__filter__location">
                     <FormGroup
                         variant="outlined"
                         size="small"
-                        endAdornment={<Select />}
+                        endAdornment={<StatesSelect />}
                     >
                         <Select />
                     </FormGroup>

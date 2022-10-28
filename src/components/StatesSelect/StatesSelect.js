@@ -2,8 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Select } from 'components'
 
-const statesItemsSelector = state => state.states.items
-const statesLoadingSelector = state => state.states.loading
+const statesItemsSelector = state => state.loc_states.items
+const statesLoadingSelector = state => state.loc_states.loading
 
 const StatesSelect = () => {
     const items = useSelector(statesItemsSelector);

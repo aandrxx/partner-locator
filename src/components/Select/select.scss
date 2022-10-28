@@ -38,12 +38,11 @@
         padding: $spacer $spacer;
     }
 
-    .form__select__dropdown__items > .form__select__dropdown__item:hover {
+    .form__select__dropdown__items > .form__select__dropdown__item:not([data-state="is_disabled"]):hover {
         background: $link-primary;
         color: $text-alternative;
     }
 }
-
 
 .form__select__dropdown.--is_visible {
     display: block;

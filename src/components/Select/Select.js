@@ -8,12 +8,22 @@ import './select.scss'
 
 const SelectComponent = ({
     className = '',
+    options = [],
+    loading = false,
     ...restProps
 }) => {
-    const [ open, setOpen ] = useState(false);
+    const [ open, setOpen ] = useState(false)
+    const [ value, setValue ] = useState({ key: '', text: '' })
+
+    const optionsMapped = options.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item }</div>)
 
     const _toggleDropdown = () => {
-        setOpen((prev) => !prev);
+        setOpen((prev) => !prev)
+    }
+
+    const _onChange = (event) => {
+        console.log(event.target);
+        setValue({ key: '', text: '' });
     }
 
     return (
@@ -30,7 +40,7 @@ const SelectComponent = ({
             }
             {...restProps}
         >
-            <div className="form__select__value" onClick={_toggleDropdown}>Value</div>
+            <div className="form__select__value" onClick={_toggleDropdown}>{ loading ? 'Loading...' : value.text || value.key }</div>
             <div className={
                     classNames(
                         {
@@ -42,12 +52,7 @@ const SelectComponent = ({
             >
                 <div className="form__select__dropdown__input"><Input variant="outlined" /></div>
                 <div className="form__select__dropdown__items">
-                    <div className="form__select__dropdown__item">SDF</div>
-                    <div className="form__select__dropdown__item">addresssd</div>
-                    <div className="form__select__dropdown__item">aklsdj</div>
-                    <div className="form__select__dropdown__item">sd</div>
-                    <div className="form__select__dropdown__item">fg</div>
-                    <div className="form__select__dropdown__item">SDF</div>
+                    { optionsMapped.length > 0 ? optionsMapped : <div data-state="is_disabled" className="form__select__dropdown__item"> No options</div> }
                 </div>
             </div>
         </FormGroup>

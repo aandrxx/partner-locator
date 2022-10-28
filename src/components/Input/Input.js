@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import './input.scss'
 
-const InputComponent = ({ className="", variant="default", ...restProps }) => {
+const InputComponent = ({ className="", variant="default", onChange = () => false, ...restProps }) => {
 
     return (
         <div className={
@@ -18,7 +18,7 @@ const InputComponent = ({ className="", variant="default", ...restProps }) => {
             }
             {...restProps}
         >
-            <input {...restProps} />
+            <input onChange={onChange} {...restProps} />
         </div>
     )
 }

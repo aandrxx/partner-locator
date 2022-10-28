@@ -16,6 +16,7 @@ const SelectComponent = ({
 }) => {
     const [ open, setOpen ] = useState(false)
     const [ value, setValue ] = useState({ key: '', text: '' })
+    const [ searchString, setSearchString ] = useState('')
 
     const _onChange = useCallback((event) => {
         const value = { key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
@@ -24,11 +25,15 @@ const SelectComponent = ({
         _toggleDropdown()
     }, [onChange])
 
-    const optionsMapped = options.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
+    const _onSearch = (event) => {
+        setSearchString(event.target.value)
+    }
 
     const _toggleDropdown = () => {
         setOpen((prev) => !prev)
     }
+    const filteredOptions = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
+    const optionsMapped = filteredOptions.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
     
     return (
         <FormGroup 
@@ -54,9 +59,9 @@ const SelectComponent = ({
                     )
                 }
             >
-                <div className="form__select__dropdown__input"><Input variant="outlined" /></div>
+                <div className="form__select__dropdown__input"><Input onChange={_onSearch} variant="outlined" /></div>
                 <div className="form__select__dropdown__items">
-                    { optionsMapped.length > 0 ? optionsMapped : <div data-state="is_disabled" className="form__select__dropdown__item"> No options</div> }
+                    { optionsMapped.length > 0 ? optionsMapped : <div data-state="is_disabled" className="form__select__dropdown__item"> Not found</div> }
                 </div>
             </div>
         </FormGroup>

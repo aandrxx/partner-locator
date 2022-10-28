@@ -31,7 +31,7 @@ const StatesSelect = () => {
     const itemsMapped = itemsFiltered.map(item => ({ key: item.short_name, text: item.name }))
     
     return (
-        <Select variant="outlined" size="small" placeHolder="State" loading={loading} options={itemsMapped} onChange={_onChange} />
+        <Select variant="outlined" size="small" placeHolder="State" loading={loading} options={itemsMapped} onChange={_onChange} disabled={itemsMapped.length === 0} />
     )
 }
 

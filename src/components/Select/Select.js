@@ -9,6 +9,7 @@ import './select.scss'
 const SelectComponent = ({
     className = '',
     placeHolder = 'No chosen',
+    disabled = false,
     options = [],
     loading = false,
     onChange = () => false,
@@ -25,20 +26,21 @@ const SelectComponent = ({
         }
     }, [ options, onChange, value.key ])
 
+    const _toggleDropdown = useCallback(() => {
+        if (!disabled) setOpen((prev) => !prev)
+    }, [ disabled ])
+
     const _onChange = useCallback((event) => {
         const value = { id: event.target.getAttribute("data-id"), key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
         setValue(value)
         onChange(value)
         _toggleDropdown()
-    }, [onChange])
+    }, [ onChange, _toggleDropdown])
 
     const _onSearch = (event) => {
         setSearchString(event.target.value)
     }
 
-    const _toggleDropdown = () => {
-        setOpen((prev) => !prev)
-    }
     const optionsFiltered = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
     const optionsMapped = optionsFiltered.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-id={item.id} data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
     
@@ -50,6 +52,7 @@ const SelectComponent = ({
                 classNames(
                     {
                         'form__select': true,
+                        '--is_disabled': disabled,
                     },
                     ...className.split(' ')
                 )

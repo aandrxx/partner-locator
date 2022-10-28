@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import classNames from 'classnames'
 
 import { IconButton, Input, FormGroup } from 'components'
@@ -17,14 +17,12 @@ const SelectComponent = ({
     const [ open, setOpen ] = useState(false)
     const [ value, setValue ] = useState({ key: '', text: '' })
 
-    useEffect(() => {
-        onChange({key: value.key, text: value.text})
-    }, [ onChange, value.key, value.text ])
-
     const _onChange = useCallback((event) => {
-        setValue({ key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") });
-        _toggleDropdown();
-    }, [])
+        const value = { key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
+        setValue(value)
+        onChange(value)
+        _toggleDropdown()
+    }, [onChange])
 
     const optionsMapped = options.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
 

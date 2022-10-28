@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://api.doublegis.com',
+  baseURL: 'http://localhost:1337/',
   // timeout: 1000,
   // headers: { 'X-Custom-Header': 'foobar' }
 });

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IconButton, Input, FormGroup, Select, StatesSelect } from 'components'
+import { IconButton, Input, FormGroup, Select, StatesSelect, StatusSelect } from 'components'
 import { ReactComponent as SearchIcon } from 'assets/images/search-ico.svg'
 
 import './searchForm.scss'
@@ -17,7 +17,7 @@ const SearchForm = () => {
             </FormGroup>
             <div className="main__hero__search_form__filter">
                 <div className="main__hero__search_form__filter__type">
-                    <Select variant="outlined" size="small" />
+                    <StatusSelect />
                 </div>
                 <div className="main__hero__search_form__filter__location">
                     <FormGroup

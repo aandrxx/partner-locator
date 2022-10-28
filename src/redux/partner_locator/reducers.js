@@ -7,10 +7,15 @@ const initialState = {
   loaded: false,
 }
 
-const replaceItem = (array, newItem) => {
-  let newArray = array.slice();
-  newArray.splice(newArray.findIndex(item => item.id === newItem.id), 1, newItem);
-  return newArray;
+const addItem = (array, newItem) => {
+  let newArray = array.slice()
+  const currentIndex = newArray.findIndex(item => item.field === newItem.field)
+  if(currentIndex !== -1) {
+    newArray.splice(currentIndex, 1, newItem)
+  } else {
+    newArray.push(newItem)
+  }
+  return newArray
 }
 
 export default function locatorReducer(state = initialState, action) {
@@ -19,8 +24,15 @@ export default function locatorReducer(state = initialState, action) {
       return { 
         ...state,
         filters: action.data 
-          ? replaceItem(state.filters, action.data)
+          ? addItem(state.filters, action.data)
           : state.filters.filter(item => item.field !== 'state')
+      }
+    case actions.SET_CURRENT_STATUS:
+      return { 
+        ...state,
+        filters: action.data 
+          ? addItem(state.filters, action.data)
+          : state.filters.filter(item => item.field !== 'status')
       }
     case actions.GET_ITEMS_LOADING:
       return { ...state, loading: true, loaded: false, items: [] }

@@ -8,19 +8,19 @@ const parseResponse = (data) => {
 
 export function getPartners(filters = []) {
     const filtersMapped = filters.map(item => {
-        if(item.field === 'searchString') return [ 'searchString', item.value ]
+        if(item.field === 'searchString') return [ 'searchString', item.text ]
         if(item.field === 'state') return [ 'states_covered_contains', item.key ]
         if(item.field === 'country') return [ 'countries_covered_contains', item.key ]
-        if(item.field === 'status') return [ 'status', item.value ]
+        if(item.field === 'status') return [ 'status', item.text ]
         return false
     })
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch({
             type: actions.GET_ITEMS_LOADING,
             filters: filtersMapped
         });
         apiClient
-            .get('/partner-locator/'+(filtersMapped.length > 0 ? `?${filtersMapped.map((item) => item.join('='))}` : ''))
+            .get('/partner-locator/partners'+(filtersMapped.length > 0 ? `?${filtersMapped.map((item) => item.join('=')).join('&')}` : ''))
             .then((response) => {
                 if (response) {
                     dispatch({

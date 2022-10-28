@@ -10,9 +10,9 @@ apiClient.interceptors.response.use(undefined, (error) => {
   // Errors handling
   const { response } = error;
   const { data } = response;
-  if (data) {
+  if (data && data.errors) {
     console.log({
-      message: data.statusCode + ' ' + data.error,
+      message: data.errors.msg,
     });
   }
 })

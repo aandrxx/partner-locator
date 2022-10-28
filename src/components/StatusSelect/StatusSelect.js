@@ -28,7 +28,7 @@ const StatusSelect = () => {
     }, [ dispatch ])
     
     return (
-        <Select variant="outlined" size="small" placeHolder="Type" loading={loading} options={itemsMapped} onChange={_onChange} />
+        <Select variant="outlined" size="small" placeHolder="Type" loading={loading} options={itemsMapped} onChange={_onChange} disabled={itemsMapped.length === 0} />
     )
 }
 

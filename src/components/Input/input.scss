@@ -28,11 +28,21 @@
     width: 100%;
 }
 
+.form__input input:focus {
+    outline: 0px;
+}
+
 .form__input.--outlined {
     border-radius: $spacer*0.5;
     border: 1px solid #B7BCC1;
 }
 
-.form__input input:focus {
-    outline: 0px;
+.form__input.--small {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 28px;
+}
+
+.form__input.--full-width, .form__input.--full-width > * {
+    width: 100%;
 }

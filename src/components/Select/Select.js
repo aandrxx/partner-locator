@@ -12,12 +12,17 @@ const SelectComponent = ({
     disabled = false,
     options = [],
     loading = false,
+    initialValue = { id: '', key: '', text: '' },
     onChange = () => false,
     ...restProps
 }) => {
     const [ open, setOpen ] = useState(false)
-    const [ value, setValue ] = useState({ key: '', text: '' })
+    const [ value, setValue ] = useState(initialValue)
     const [ searchString, setSearchString ] = useState('')
+
+    useEffect(() => {
+        setValue({ key: initialValue.key || '', text: initialValue.text || '', id: initialValue.id || '' })
+    }, [ initialValue.key, initialValue.text, initialValue.id ])
 
     const _toggleDropdown = useCallback(() => {
         setOpen((prev) => !prev)
@@ -25,7 +30,7 @@ const SelectComponent = ({
 
     const _onChange = useCallback((event) => {
         const value = { id: event.target.getAttribute("data-id"), key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
-        setValue(value)
+        setValue({ id: '', key: '', text: '', ...value })
         onChange(value)
         _toggleDropdown()
     }, [ onChange, _toggleDropdown ])
@@ -33,13 +38,6 @@ const SelectComponent = ({
     const _onSearch = (event) => {
         setSearchString(event.target.value)
     }
-
-    useEffect(() => {
-        if(options.length > 0 && !options.find(item => item.key === value.key)) {
-            setValue({ key: '', text: '' })
-            onChange({ key: '', text: '' })
-        }
-    }, [ options, onChange, value.key ])
 
     const optionsFiltered = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
     const optionsMapped = optionsFiltered.map((item, i) => <div 
@@ -56,14 +54,16 @@ const SelectComponent = ({
             data-id={item.id} 
             data-key={item.key} 
             data-text={item.text}
+            role="option"
+            aria-selected={value.text && item.text === value.text ? true : false}
         >
             { item.text || item.key }
         </div>)
 
     return (
         <FormGroup 
-            fullWidth={true}
             endAdornment={<IconButton onClick={_toggleDropdown} icon={<ArrowIcon width="20" />} />}
+            role="listbox"
             className={
                 classNames(
                     {
@@ -75,7 +75,13 @@ const SelectComponent = ({
             }
             {...restProps}
         >
-            <button className="form__select__value" disabled={disabled} onClick={_toggleDropdown}>{ loading ? 'Loading...' : value.text || value.key || placeHolder }</button>
+            <button 
+                className="form__select__value" 
+                disabled={disabled} 
+                onClick={_toggleDropdown}
+            >
+                { loading ? 'Loading...' : value.text || value.key || placeHolder }
+            </button>
             <div className={
                     classNames(
                         {

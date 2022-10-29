@@ -1,38 +1,39 @@
 @import 'scss/mixins';
 @import 'scss/variables';
 
-.form__input_group {
+.form__item_group {
     display: flex;
     align-items: center;
     background: #fff;
     color: $text-primary;
+    border-color: #fff;
     border-radius: $spacer*0.5;
     box-sizing: border-box;
     line-height: 32px;
 }
 
-.form__input_group.--full_width {
+.form__item_group.--full_width {
+    width: 100%;
     flex-wrap: nowrap;
 }
 
-.form__input_group.--full_width > * {
+.form__item_group.--full_width > * {
     flex: 1 1 0%;
 }
 
-.form__input_group.--outlined, .form__input_group.--outlined > .form__input_group {
+.form__item_group.--outlined, .form__item_group.--outlined > .form__item_group {
     background-color: transparent;
     border: 2px solid #fff;
     color: $text-alternative;
 }
-.form__input_group.--outlined:not( .form__select ) {
-
+.form__item_group.--outlined:not( .form__select ) {
     @include mobileBreakPoint {
         gap: $spacer;
         border: 0;
     }
 }
 
-.form__input_group.--outlined > .form__input_group {
+.form__item_group.--outlined > .form__item_group {
     border: 0;
     border-radius: 0;
 
@@ -43,16 +44,16 @@
     }
 }
 
-.form__input_group.--outlined > .form__input_group:not(:first-of-type) {
+.form__item_group.--outlined > .form__item_group:not(:first-of-type) {
     border-left: 2px solid #fff;
 }
 
-.form__input_group.--small, .form__input_group.--small > .form__input_group {
+.form__item_group.--small, .form__item_group.--small > .form__item_group {
     font-size: 13px;
     line-height: 28px;
     height: 40px;
 }
 
-.form__input_group.--is_disabled {
+.form__item_group.--is_disabled {
     background-color: rgba($color: #fff, $alpha: 0.3) !important;
 }

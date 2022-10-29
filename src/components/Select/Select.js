@@ -19,15 +19,8 @@ const SelectComponent = ({
     const [ value, setValue ] = useState({ key: '', text: '' })
     const [ searchString, setSearchString ] = useState('')
 
-    useEffect(() => {
-        if(!options.find(item => item.key === value.key)) {
-            setValue({ key: '', text: '' })
-            onChange({ key: '', text: '' })
-        }
-    }, [ options, onChange, value.key ])
-
     const _toggleDropdown = useCallback(() => {
-        if (!disabled) setOpen((prev) => !prev)
+        setOpen((prev) => !prev)
     }, [ disabled ])
 
     const _onChange = useCallback((event) => {
@@ -41,9 +34,32 @@ const SelectComponent = ({
         setSearchString(event.target.value)
     }
 
+    useEffect(() => {
+        if(options.length > 0 && !options.find(item => item.key === value.key)) {
+            setValue({ key: '', text: '' })
+            onChange({ key: '', text: '' })
+        }
+    }, [ options, onChange, value.key ])
+
     const optionsFiltered = options.filter((option) => option.text.toLowerCase().indexOf(searchString.toLowerCase()) >= 0)
-    const optionsMapped = optionsFiltered.map((item, i) => <div key={i} onClick={_onChange} className="form__select__dropdown__item" data-id={item.id} data-key={item.key} data-text={item.text}>{ item.text || item.key }</div>)
-    
+    const optionsMapped = optionsFiltered.map((item, i) => <div 
+            key={i} 
+            onClick={_onChange} 
+            className={
+                classNames(
+                    {
+                        'form__select__dropdown__item': true,
+                        '--is_selected': value.text && item.text === value.text,
+                    }
+                )
+            }
+            data-id={item.id} 
+            data-key={item.key} 
+            data-text={item.text}
+        >
+            { item.text || item.key }
+        </div>)
+
     return (
         <FormGroup 
             fullWidth={true}
@@ -52,14 +68,13 @@ const SelectComponent = ({
                 classNames(
                     {
                         'form__select': true,
-                        '--is_disabled': disabled,
                     },
                     ...className.split(' ')
                 )
             }
             {...restProps}
         >
-            <div className="form__select__value" onClick={_toggleDropdown}>{ loading ? 'Loading...' : value.text || value.key || placeHolder }</div>
+            <button className="form__select__value" disabled={disabled} onClick={_toggleDropdown}>{ loading ? 'Loading...' : value.text || value.key || placeHolder }</button>
             <div className={
                     classNames(
                         {
@@ -69,7 +84,7 @@ const SelectComponent = ({
                     )
                 }
             >
-                <div className="form__select__dropdown__input"><Input onChange={_onSearch} variant="outlined" /></div>
+                <div className="form__select__dropdown__input"><Input onChange={_onSearch} fullWidth={true} size="small" variant="outlined" /></div>
                 <div className="form__select__dropdown__items">
                     { optionsMapped.length > 0 ? optionsMapped : <div data-state="is_disabled" className="form__select__dropdown__item"> Not found</div> }
                 </div>

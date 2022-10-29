@@ -3,43 +3,59 @@
 
 .form__select {
     position: relative;
+}
+
+.form__select button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    background: none;
+    text-align: left;
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentcolor;
     cursor: pointer;
 }
 
-.form__select__value {
-    font-weight: 400;
-    box-sizing: border-box;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    flex: 1 1 0%;
-    padding: $spacer*0.5 $spacer;
-    line-height: 28px;
+.form__select.--full-width {
+    width: 100%;
 }
 
 .form__select__dropdown {
+    z-index: 1;
     position: absolute;
-    left: 0;
-    right: 0;
+    left: -2px;
+    right: -2px;
     top: 100%;
     display: none;
     background: #fff;
     color: $text-primary;
+    border: 1px solid #B7BCC1;
+    border-top: none;
+    border-radius: 0px 0px $spacer*0.5 $spacer*0.5;
+    box-sizing: border-box;
 
     .form__select__dropdown__input {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-sizing: border-box;
+        background: none;
         padding: $spacer;
     }
 
     .form__select__dropdown__items {
         overflow-y: scroll;
         max-height: 200px;
+        cursor: pointer;
     }
 
     .form__select__dropdown__items > .form__select__dropdown__item {
         padding: $spacer $spacer;
     }
 
-    .form__select__dropdown__items > .form__select__dropdown__item:not([data-state="is_disabled"]):hover {
+    .form__select__dropdown__items > .form__select__dropdown__item:not([data-state="is_disabled"]):hover, .form__select__dropdown__items > .form__select__dropdown__item:not([data-state="is_disabled"]).--is_selected {
         background: $link-primary;
         color: $text-alternative;
     }
@@ -47,4 +63,31 @@
 
 .form__select__dropdown.--is_visible {
     display: block;
+}
+
+.form__select {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 36px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    display: inline-flex;
+    align-items: center;
+    padding: $spacer*0.5 $spacer;
+}
+
+.form__select select {
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentcolor;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    background: none;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    min-width: 0px;
+    width: 100%;
 }

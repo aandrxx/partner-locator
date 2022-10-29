@@ -2,10 +2,10 @@ import React from 'react'
 
 import './iconButton.scss'
 
-const IconButtonComponent = ({ icon }) => {
+const IconButtonComponent = ({ onClick, icon }) => {
 
     return (
-        <button className="form__icon-button">{ icon }</button>
+        <button onClick={onClick} className="form__icon-button">{ icon }</button>
     )
 }
 

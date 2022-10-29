@@ -8,7 +8,8 @@
 .form__select button {
     margin: 0;
     padding: 0;
-    border: 0;
+    padding: $spacer*0.5 $spacer;
+    border: none;
     box-sizing: border-box;
     background: none;
     text-align: left;
@@ -16,6 +17,10 @@
     letter-spacing: inherit;
     color: currentcolor;
     cursor: pointer;
+}
+
+.form__select button:disabled {
+    cursor: default;
 }
 
 .form__select.--full-width {
@@ -63,31 +68,4 @@
 
 .form__select__dropdown.--is_visible {
     display: block;
-}
-
-.form__select {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 36px;
-    box-sizing: border-box;
-    position: relative;
-    cursor: text;
-    display: inline-flex;
-    align-items: center;
-    padding: $spacer*0.5 $spacer;
-}
-
-.form__select select {
-    font: inherit;
-    letter-spacing: inherit;
-    color: currentcolor;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    background: none;
-    margin: 0;
-    -webkit-tap-highlight-color: transparent;
-    display: block;
-    min-width: 0px;
-    width: 100%;
 }

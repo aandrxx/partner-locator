@@ -21,14 +21,14 @@ const SelectComponent = ({
 
     const _toggleDropdown = useCallback(() => {
         setOpen((prev) => !prev)
-    }, [ disabled ])
+    }, [])
 
     const _onChange = useCallback((event) => {
         const value = { id: event.target.getAttribute("data-id"), key: event.target.getAttribute("data-key"), text: event.target.getAttribute("data-text") }
         setValue(value)
         onChange(value)
         _toggleDropdown()
-    }, [ onChange, _toggleDropdown])
+    }, [ onChange, _toggleDropdown ])
 
     const _onSearch = (event) => {
         setSearchString(event.target.value)
@@ -63,11 +63,12 @@ const SelectComponent = ({
     return (
         <FormGroup 
             fullWidth={true}
-            endAdornment={<IconButton icon={<ArrowIcon onClick={_toggleDropdown} width="20" />} />}
+            endAdornment={<IconButton onClick={_toggleDropdown} icon={<ArrowIcon width="20" />} />}
             className={
                 classNames(
                     {
                         'form__select': true,
+                        '--is_disabled': disabled,
                     },
                     ...className.split(' ')
                 )

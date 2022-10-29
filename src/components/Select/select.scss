@@ -5,7 +5,9 @@
     position: relative;
 }
 
-.form__select button {
+.form__select button.form__select__value {
+    height: calc(44px - $spacer*0.5);
+    line-height: 32px;
     margin: 0;
     padding: 0;
     padding: $spacer*0.5 $spacer;
@@ -17,6 +19,7 @@
     letter-spacing: inherit;
     color: currentcolor;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .form__select button:disabled {
@@ -68,4 +71,9 @@
 
 .form__select__dropdown.--is_visible {
     display: block;
+}
+
+.form__select.--small button.form__select__value {
+    height: calc(40px - $spacer*0.5);
+    line-height: 28px;
 }
